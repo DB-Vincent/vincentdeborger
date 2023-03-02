@@ -8,6 +8,8 @@ var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
 var beeper = require('beeper');
 
+const tailwind = require('tailwindcss');
+
 // postcss plugins
 var autoprefixer = require('autoprefixer');
 var colorFunction = require('postcss-color-mod-function');
@@ -33,12 +35,14 @@ function hbs(done) {
         src(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs']),
         livereload()
     ], handleError(done));
+    css(done);
 }
 
 function css(done) {
     var processors = [
         easyimport,
         colorFunction(),
+        tailwind(),
         autoprefixer(),
         cssnano()
     ];

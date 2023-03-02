@@ -1,8 +1,8 @@
 {
-    "name": "ghost-starter-theme",
+    "name": "vincentdeborger",
     "description": "A custom theme for ghost",
-    "demo": "https://starter.ghost.io",
-    "version": "1.0.0",
+    "demo": "https://vincentdeborger.be",
+    "version": "1.0.3",
     "engines": {
         "ghost": ">=4.0.0"
     },
@@ -20,9 +20,9 @@
         "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi"
     },
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+        "name": "Vincent De Borger",
+        "email": "hello@vincentdeborger.be",
+        "url": "https://vincentdeborger.be"
     },
     "gpm": {
         "type": "theme",
@@ -85,5 +85,10 @@
                 "width": 2000
             }
         }
+    },
+    "dependencies": {
+        "@tailwindcss/typography": "^0.5.9",
+        "tailwind-highlightjs": "^2.0.1",
+        "tailwindcss": "^3.2.4"
     }
 }

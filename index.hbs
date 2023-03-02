@@ -1,15 +1,11 @@
 {{!< default}}
+<h3 class="text-sm text-gray-500 font-serif tracking-wider mb-4">I occasionally write things</h3>
+{{#foreach posts}}
 
-<div class="gh-page">
-    <div class="gh-container">
+    {{> "card"}} {{!-- partials/card.hbs --}}
 
-        <div class="gh-postfeed">
-        {{#foreach posts}}
-
-            {{> "card"}} {{!-- partials/card.hbs --}}
-
-        {{/foreach}}
-        </div>
-
-    </div>
+{{/foreach}}
+<div class="mt-32 md:mt-48">
+    <h3 class="text-sm text-gray-500 font-serif tracking-wider">Let's get in touch</h3>
+    <a href="mailto:hello@vincentdeborger.be"><span class="text-2xl md:text-4xl text-blue-500 break-all">hello@vincentdeborger.be</span></a>
 </div>

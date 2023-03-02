@@ -1,115 +1,63 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
-<head>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset "built/tokyo-night-dark.min.css"}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset "built/stackoverflow-light.min.css"}}" />
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+        <title>{{meta_title}}</title>
 
-    <title>{{meta_title}}</title>
+        {{ghost_head}}
+        {{!-- Outputs important meta data and settings, should always be in <head> --}}
+    </head>
+    <body class="dark:bg-black dark:text-white md:relative">
+{{!--         {{navigation}} --}}
 
-    {{ghost_head}}
-    {{!-- Outputs important meta data and settings, should always be in <head> --}}
+        <div class="container mx-auto px-8 my-16 md:px-8 mt-16">
+            <main class="grid grid-rows-1 grid-cols-1 md:grid-rows-1 md:grid-cols-4 md:gap-4">
+                <div class="sidebar md:col-span-1 min-w-full md:break-word {{#is "page,post"}}md:block hidden{{/is}}{{#is "index"}}md:mb-0 mb-16{{/is}}">
+                    <h1 class="text-lg dark:text-white">{{@site.title}}</h1>
+                    <h2 class="text-gray-500 ">{{@site.description}}</h2>
 
-</head>
-<body class="{{body_class}}">
-<div class="gh-viewport">
+                    <div class="w-24 flex mt-4 text-gray-500">
+                        <a href="https://twitter.com/vincentdeborger" aria-label="Personal Twitter account" target="_blank" rel="noopener" class="flex-1"><i class="fab fa-twitter hover:text-black dark:hover:text-white"></i></a>
+                        <a href="https://www.linkedin.com/in/vincent-de-borger/" aria-label="Personal LinkedIn account" target="_blank" rel="noopener" class="flex-1"><i class="fab fa-linkedin hover:text-black dark:hover:text-white"></i></a>
+                        <a href="https://github.com/DB-Vincent" target="_blank" aria-label="Personal Github account" rel="noopener" class="flex-1"><i class="fab fa-github hover:text-black dark:hover:text-white"></i></a>
+                    </div>
 
-<header id="gh-head" class="gh-head">
-    <nav class="gh-head-inner gh-container">
-
-        <div class="gh-head-brand">
-            <a class="gh-head-logo" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                {{else}}
-                    {{@site.title}}
-                {{/if}}
-            </a>
-            <a class="gh-burger" role="button">
-                <div class="gh-burger-box">
-                    <div class="gh-burger-inner"></div>
+                    <div class="text-gray-500 mmt-4">
+                        {{#is "page,post"}}
+                            <a href="{{@site.url}}">🠔 Go back</a>
+                        {{/is}}
+                    </div>
                 </div>
-            </a>
+
+                {{#is "post"}}
+                    <a class="fixed bottom-0 right-0 bg-blue-500 text-white h-16 w-16 flex items-center justify-center rounded-full hover:bg-blue-800 m-6 block md:hidden" href="{{@site.url}}"><i class="fas fa-arrow-left hover:text-black dark:hover:text-white "></i></a>
+                {{/is}}
+
+
+                <div class="md:col-span-3">
+
+                    {{{body}}}
+                    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+
+                    <footer class="mt-32 md:mt-48">
+                        <span class="text-gray-500 dark:text-gray-500">Made in 2022 by myself using <a href="https://ghost.org/" aria-label="Ghost" target="_blank" rel="noopener" class="text-gray-500 dark:text-gray-500">Ghost</a>, <a href="https://tailwindcss.com/" aria-label="Tailwind" target="_blank" rel="noopener" class="text-gray-500 dark:text-gray-500">Tailwind</a> and lots of <span class="text-gray-500 dark:text-gray-500 coffee-cursor">coffee</span>.</span>
+                    </footer>
+                </div>
+            </main>
         </div>
-        <div class="gh-head-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-head-actions-list">
-                {{#if @site.facebook}}
-                <a href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                {{/if}}
-                {{#if @site.twitter}}
-                <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                {{/if}}
-                <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
-            </div>
-        </div>
-    </nav>
-</header>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script src="{{asset "built/terraform.js"}}"></script>
 
-<main class="gh-main">
-
-    {{{body}}}
-    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
-
-</main>
-
-<footer class="gh-foot">
-    <div class="gh-container">
-        <div class="gh-foot-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-foot-meta">
-            Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
-        </div>
-    </div>
-</footer>
-
-</div>
-
-{{!-- <foot> --}}
-
-<script src="{{asset "built/jquery-3.4.1.min.js"}}"></script>
-
-{{#if pagination.pages}}
-<script>
-    var maxPages = parseInt('{{pagination.pages}}');
-</script>
-<script src="{{asset "built/infinitescroll.js"}}"></script>
-{{/if}}
-
-<script>
-$(document).ready(function () {
-    // Mobile Menu Trigger
-    $('.gh-burger').click(function () {
-        $('body').toggleClass('gh-head-open');
-    });
-});
-</script>
-
-{{#is "post, page"}}
-<script src="{{asset "built/jquery.fitvids.js"}}"></script>
-<script>
-var images = document.querySelectorAll('.kg-gallery-image img');
-images.forEach(function (image) {
-    var container = image.closest('.kg-gallery-image');
-    var width = image.attributes.width.value;
-    var height = image.attributes.height.value;
-    var ratio = width / height;
-    container.style.flex = ratio + ' 1 0%';
-});
-$(document).ready(function () {
-    var $postContent = $(".gh-content");
-    $postContent.fitVids();
-});
-</script>
-{{/is}}
-
-{{ghost_foot}}
-{{!-- Outputs important scripts - should always be included before closing body tag --}}
-
-</body>
+        <script>
+            hljs.registerLanguage('terraform', window.hljsDefineTerraform);
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script src="https://kit.fontawesome.com/d57ead3aa2.js" crossorigin="anonymous"></script>
+    </body>
 </html>
